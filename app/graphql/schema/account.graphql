@@ -1,0 +1,26 @@
+input SignInInput {
+  email: String!
+  password: String!
+}
+
+input SignUpInput {
+  name: String
+  email: String!
+  password: String!
+  passwordConfirmation: String!
+}
+
+type SignInPayload {
+  jwt: String!
+  user: User!
+}
+
+type SignUpPayload {
+  jwt: String!
+  user: User!
+}
+
+extend type Mutation {
+  signIn(input: SignInInput!): SignInPayload! 
+  signUp(input: SignUpInput!): SignUpPayload!
+}
