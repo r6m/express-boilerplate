@@ -10,17 +10,12 @@ input SignUpInput {
   passwordConfirmation: String!
 }
 
-type SignInPayload {
-  jwt: String!
-  user: User!
-}
-
-type SignUpPayload {
-  jwt: String!
+type AuthPayload {
+  token: String!
   user: User!
 }
 
 extend type Mutation {
-  signIn(input: SignInInput!): SignInPayload! 
-  signUp(input: SignUpInput!): SignUpPayload!
+  signIn(input: SignInInput!): AuthPayload! 
+  signUp(input: SignUpInput!): AuthPayload!
 }
