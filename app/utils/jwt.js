@@ -1,16 +1,25 @@
 import jwt from 'jsonwebtoken'
 
-const JWT_SECRET = process.env.JWT_SECRET || 'defaultsecret'
+export const jwtConfig = {
+  secretKey: process.env.JWT_SECRET || 'defaultsecret',
+  issuer: 'issuer',
+  audience: "audience",
+  algorithm: "HS512",
+}
 
 export const signToken = (payload = {}, expiresIn = "1d") => {
-  return jwt.sign(payload, JWT_SECRET, {
+  const { userId } = payload
+  const { secretKey, ...options } = jwtConfig
+
+  return jwt.sign(payload, secretKey, {
+    ...options,
+    ...(userId && { subject: userId }),
     expiresIn,
-    algorithm: "HS512",
   })
 }
 
 export const verifyToken = (token) => {
-  return jwt.verify(token, JWT_SECRET, { algorithms: ["HS512"] })
+  return jwt.verify(token, jwtConfig.secretKey, { algorithms: ["HS512"] })
 }
 
 export const decodeAndVerifyToken = (context) => {

@@ -1,6 +1,6 @@
 import { GraphQLError } from "graphql";
 import { User } from "../../models";
-import { signToken } from '../../services/jwt.service';
+import { signToken } from '../../utils/jwt';
 
 export default {
   Query: {},
