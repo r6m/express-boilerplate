@@ -1,6 +1,7 @@
 import express from "express";
 import { graphql } from './graphql';
 import router from './router'
+import { config as loadConfig } from 'dotenv'
 
 require("./db/mongoose")
 
