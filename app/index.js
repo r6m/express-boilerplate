@@ -1,5 +1,6 @@
 import express from "express";
 import { graphql } from './graphql';
+import router from './router'
 
 require("./db/mongoose")
 
