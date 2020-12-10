@@ -6,19 +6,19 @@ import { join } from 'path';
 import { authDirective } from './directives/auth';
 import resolvers from './resolvers';
 
-const { authenticateDirectiveTypeDefs, authenticateDirectiveTransformer } = authDirective()
+const { authDirectiveTypeDefs, authDirectiveTransformer } = authDirective()
 
-const typeDefs = loadFilesSync(join(__dirname, 'schema/*.graphql'), {
+const typeDefs = loadFilesSync(join(__dirname, 'schema/**/*.graphql'), {
   loaders: [new GraphQLFileLoader()],
 })
 
 const schema = makeExecutableSchema({
   typeDefs: [
     ...typeDefs,
-    authenticateDirectiveTypeDefs,
+    authDirectiveTypeDefs,
   ],
   resolvers,
-  schemaTransforms: [authenticateDirectiveTransformer],
+  schemaTransforms: [authDirectiveTransformer],
 })
 
 const productionOptions = {
