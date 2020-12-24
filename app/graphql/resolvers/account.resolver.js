@@ -15,7 +15,7 @@ export default {
         throw new GraphQLError("incorrect email or password")
       }
 
-      const jwt = user.generateJwtToken({ email }, "1d")
+      const jwt = signToken({ userId: user.id, email }, "1d")
 
       return { jwt, user }
     },
@@ -28,7 +28,7 @@ export default {
       }
 
       const user = await User.create(input)
-      const jwt = signToken({ id: user.id, email })
+      const jwt = signToken({ userId: user.id, email })
 
       return { jwt, user }
     }
