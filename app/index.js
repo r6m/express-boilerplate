@@ -1,12 +1,11 @@
+import './config'
 import express from "express";
 import { graphql } from './graphql';
 import cors from 'cors'
 import router from './router'
-import { config as loadConfig } from 'dotenv'
 
 const PORT = process.env.PORT || 4000
 
-loadConfig()
 require("./db/mongoose")
 
 const app = express();
